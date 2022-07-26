@@ -5,15 +5,35 @@
 @section('user-active')
     active
 @endsection
+@section('content-header')
+    <div class="content-header">
+        <div class="left">
+            <h3>Users</h3>
+        </div>
+        <div class="right">
+            <a href="{{route('admin.users.create')}}" class="btn btn-primary">
+                <i class="fas fa-plus"></i>  Create User
+            </a>    
+        </div>
+    </div>
+@endsection
 @section('content')
     <div class="row mb-5 d-flex">
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
             <label for="role" class="mb-2">Role</label>
-            <select name="" class="form-control" id="role">
+            <select name="" class="form-select" id="role">
                 <option value="0">Select role</option>
                 @foreach ($roles as $role)
                     <option value="{{$role->id}}">{{$role->name}}</option>
                 @endforeach
+            </select>
+        </div>
+         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <label for="status" class="mb-2">Status</label>
+            <select name="status" id="status" class="form-select">
+                <option value="0">Select status</option>
+                <option value="ACTIVE">Active</option>
+                <option value="INACTIVE">Inactive</option>
             </select>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -35,6 +55,7 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Status</th>
                 <th>Role</th>
                 <th>Created At</th>
                 <th>Updated At</th>
@@ -64,6 +85,7 @@
                     data: function (d) {
                         d.name = $('input[name=name]').val();
                         d.email = $('input[name=email]').val();
+                        d.status = $('#status').val();
                     }
                 },
                 columns: [
@@ -74,6 +96,10 @@
                     { 
                         data: 'email',
                         name: 'email' 
+                    },
+                    { 
+                        data: 'status',
+                        name: 'status' 
                     },
                     {
                         data:'role',

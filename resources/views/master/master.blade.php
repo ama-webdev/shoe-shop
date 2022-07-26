@@ -27,23 +27,65 @@
         <div class="overlay"></div>
         <div class="sidebar">
             <div class="header">
-                <img src="{{asset('images/template/logo1.webp')}}" alt="shoe shop">
+                <img src="{{asset('images/template/logo2.webp')}}" alt="shoe shop">
             </div>
             <div class="body">
                 <ul>
                     <li class="dashboard-active">
                         <a href="{{route('admin.dashboard')}}">
-                            <i class="fas fa-home"></i>
+                            <i class="fa-solid fa-chart-line"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="@yield('user-active')">
                         <a href="{{route('admin.users.index')}}">
-                            <i class="fas fa-users"></i>
-                            User
+                            <i class="fa-solid fa-user-pen"></i>
+                            Users
                         </a>
                     </li>
-                    <li>
+                    <li class="@yield('permission-active')">
+                        <a href="{{route('admin.permissions')}}">
+                            <i class="fa-solid fa-lock"></i>
+                            Permission
+                        </a>
+                    </li>
+                    <li class="@yield('category-active')">
+                        <a href="">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                            Categories
+                        </a>
+                    </li>
+                    <li class="@yield('product-active')">
+                        <a href="">
+                           <i class="fa-solid fa-tag"></i>
+                            Products
+                        </a>
+                    </li>
+                    <li class="@yield('sale-active')">
+                        <a href="">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                            Sale
+                        </a>
+                    </li>
+                     <li class="@yield('order-active')">
+                        <a href="">
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                            Orders
+                        </a>
+                    </li>
+                    <li class="@yield('inbox-active')">
+                        <a href="">
+                            <i class="fa-solid fa-inbox"></i>
+                            Inbox
+                        </a>
+                    </li>
+                    <li class="@yield('setting-active')">
+                        <a href="{{route('admin.settings')}}">
+                            <i class="fa-solid fa-cog"></i>
+                            Setting
+                        </a>
+                    </li>
+                    <li class="@yield('signout-active')">
                         <a class="dropdown-item logout p-0" href="{{ route('logout') }}">
                             <i class="fas fa-sign-out"></i>Sign out
                         </a>
@@ -61,8 +103,8 @@
                 </div>
                 <div class="right">
                     <div class="auth-user">
-                        <i class="fas fa-user"></i>
-                        <span>ayeminaung</span>
+                        <span>{{Auth::user()->name}}</span>
+                        <i class="fas fa-user-circle fa-2x"></i>
                     </div>
                     <div class="auth-user-menu">
                         <ul>
@@ -73,13 +115,21 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid content-wrapper">
+                <div class="row">
+                    <div class="col-12">
+                        @yield('content-header')
+                    </div>
+                </div>
                 <div class="row main-content">
                     <div class="col-12">
                         @yield('content')
                     </div>
                 </div>
             </div>
+            {{-- <footer>
+                developed by ayeminaung
+            </footer> --}}
         </div>
     </div>
     <!-- jquery -->
@@ -95,6 +145,33 @@
     <!-- js -->
     <script src="{{asset('js/template.js')}}"></script>
     @yield('script')
+    <script>
+        $(document).ready(function () {
+            const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        @if (session('created'))
+            Toast.fire({
+                icon: 'success',
+                title: "{{ session('created') }}"
+            })
+        @endif
+        @if (session('updated'))
+            Toast.fire({
+                icon: 'success',
+                title: "{{ session('updated') }}"
+            })
+        @endif
+        });
+    </script>
 </body>
 
 </html>

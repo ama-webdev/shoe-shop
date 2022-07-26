@@ -26,4 +26,9 @@ $(document).ready(function () {
             }
         })
     })
+    $('.back-btn').click(function (e) {
+        e.preventDefault();
+        window.history.go(-1);
+    })
+
 })

@@ -20,7 +20,8 @@ class AdminSeeder extends Seeder
             'name' => 'Aye Min Aung',
             'email' => 'webdev.ama@gmail.com',
             'password' => Hash::make('admin123'),
+            'status' => 'ACTIVE',
         ]);
-        $user->assignRole('admin');
+        $user->assignRole(['admin', 'manager', 'customer']);
     }
 }
