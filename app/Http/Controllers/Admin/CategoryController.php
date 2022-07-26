@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
+use App\Helpers\UUID;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -34,6 +35,8 @@ class CategoryController extends Controller
         $name = $request->name;
         $category = new Category();
         $category->name = $name;
+        $category->unique_code = UUID::generate();
+        $category->category_code = UUID::CategoryCode();
         $category->save();
 
         return redirect()->route('admin.categories.index')->with('created', 'Successfully Created.');
@@ -46,19 +49,25 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Category::where('unique_code', $id)->first();
+        if (!$category) {
+            abort(404);
+        }
         return view('admin.categories.edit', compact('category'));
     }
 
     public function update(Request $request, $id)
     {
+        $category = Category::where('unique_code', $id)->first();
+        if (!$category) {
+            abort(404);
+        }
+        $category_id = $category->id;
         $validate = $request->validate([
-            'name' => 'required|string|min:3|unique:categories,name,' . $id,
+            'name' => 'required|string|min:3|unique:categories,name,' . $category_id,
         ]);
 
         $name = $request->name;
-
-        $category = Category::findOrFail($id);
         $category->name = $name;
         $category->update();
 
@@ -67,7 +76,10 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Category::where('unique_code', $id)->first();
+        if (!$category) {
+            abort(404);
+        }
         $category->delete();
         return "success";
     }
@@ -75,17 +87,21 @@ class CategoryController extends Controller
     public function ssd(Request $request)
     {
         $name = $request->name;
+        $category_code = $request->category_code;
         $query = Category::query();
 
         return Datatables::of($query)
-            ->filter(function () use ($name, $query) {
+            ->filter(function () use ($name, $category_code, $query) {
                 if ($name) {
                     $query = $query->where('name', $name);
                 }
+                if ($category_code) {
+                    $query = $query->where('category_code', $category_code);
+                }
             })
             ->addColumn('action', function ($each) {
-                $edit = '<a href="' . route('admin.categories.edit', $each->id) . '" class="edit-btn me-2"><i class="fa-solid fa-pen-to-square" style="font-size:1.2rem;color:#444;"></i></a>';
-                $delete = '<a href="#" class="text-danger delete-btn" data-id="' . $each->id . '"><i class="fas fa-trash"></i></a>';
+                $edit = '<a href="' . route('admin.categories.edit', $each->unique_code) . '" class="edit-btn me-2"><i class="fa-solid fa-pen-to-square" style="font-size:1.2rem;color:#444;"></i></a>';
+                $delete = '<a href="#" class="text-danger delete-btn" data-id="' . $each->unique_code . '"><i class="fas fa-trash"></i></a>';
                 return $edit . $delete;
             })
             ->editColumn('created_at', function ($each) {

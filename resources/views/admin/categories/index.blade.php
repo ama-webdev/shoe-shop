@@ -24,21 +24,26 @@
             <input type="text" class="form-control" id='name' name='name'>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <label for="category_code" class="mb-2">Category code</label>
+            <input type="text" class="form-control" id='category_code' name='category_code'>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
             <label for="" class="mb-2">.</label><br>
             <button class="btn btn-primary" id='search'>Search</button>
         </div>
     </div>
     <div class="table-responsive">
         <table class="table table-bordered" id="categories-table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Created At</th>
-                <th>Updated At</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-    </table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category_code</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
     </div>
 @endsection
 @section('script')
@@ -51,12 +56,17 @@
                     url: '/admin/categories/datatable/ssd',
                     data: function (d) {
                         d.name = $('input[name=name]').val();
+                        d.category_code = $('input[name=category_code]').val();
                     }
                 },
                 columns: [
                     { 
                         data: 'name',
                         name: 'name' 
+                    },
+                    {
+                        data:'category_code',
+                        name:'category_code',
                     },
                     { 
                         data: 'created_at',

@@ -18,7 +18,7 @@
     </div>
 @endsection
 @section('content')
-    <form action="{{route('admin.categories.update',$category->id)}}" method="POST">
+    <form action="{{route('admin.categories.update',$category->unique_code)}}" method="POST">
         @method('PUT')
         @csrf
         <div class="form-group mb-3">
