@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li class="@yield('category-active')">
-                        <a href="">
+                        <a href="{{route('admin.categories.index')}}">
                             <i class="fa-solid fa-clipboard-list"></i>
                             Categories
                         </a>
@@ -147,6 +147,16 @@
     @yield('script')
     <script>
         $(document).ready(function () {
+
+            let token = document.head.querySelector('meta[name="csrf-token"]')
+            if (token) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF_TOKEN': token.content
+                    }
+                })
+            }
+
             const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
