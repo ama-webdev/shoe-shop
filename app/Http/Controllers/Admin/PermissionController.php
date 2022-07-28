@@ -12,7 +12,7 @@ class PermissionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:edit-admin-permission', ['only' => ['roleEdit', 'roleUpdate']]);
+        $this->middleware(['permission:edit-admin-permission'])->only(['create', 'roleEdit', 'roleUpdate', 'store']);
     }
     public function index()
     {

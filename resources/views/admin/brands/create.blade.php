@@ -1,14 +1,14 @@
 @extends('master.master')
 @section('title')
-    Create Category
+    Create Brand
 @endsection
-@section('category-active')
+@section('brand-active')
     active
 @endsection
 @section('content-header')
     <div class="content-header">
         <div class="left">
-            <h3>Create Category</h3>
+            <h3>Create Brand</h3>
         </div>
         <div class="right">
             <a href="#" class="btn btn-primary back-btn">
@@ -18,7 +18,7 @@
     </div>
 @endsection
 @section('content')
-    <form action="{{route('admin.categories.store')}}" method="POST">
+    <form action="{{route('admin.brands.store')}}" method="POST">
         @csrf
         <div class="form-group mb-3">
             <label for="name">Name</label>

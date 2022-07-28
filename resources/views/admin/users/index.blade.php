@@ -21,7 +21,7 @@
     <div class="row mb-5 d-flex">
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
             <label for="role" class="mb-2">Role</label>
-            <select name="" class="form-select" id="role">
+            <select name="role_id" class="form-select" id="role">
                 <option value="0">Select role</option>
                 @foreach ($roles as $role)
                     <option value="{{$role->id}}">{{$role->name}}</option>
@@ -86,6 +86,7 @@
                         d.name = $('input[name=name]').val();
                         d.email = $('input[name=email]').val();
                         d.status = $('#status').val();
+                        d.role_id = $('#role').val();
                     }
                 },
                 columns: [

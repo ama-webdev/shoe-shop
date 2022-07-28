@@ -8,11 +8,6 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $permissons = [
@@ -26,11 +21,12 @@ class PermissionSeeder extends Seeder
             'edit-manager-permission',
             'edit-customer-permission',
             'create-category',
-            'edit-category',
             'update-category',
             'delete-category',
+            'create-brand',
+            'update-brand',
+            'delete-brand',
             'create-product',
-            'edit-product',
             'update-product',
             'delete-product',
         ];

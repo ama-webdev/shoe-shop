@@ -1,6 +1,6 @@
 @extends('master.master')
 @section('title')
-    Permission
+    Edit Permission
 @endsection
 @section('permission-active')
     active

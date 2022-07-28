@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('name')</title>
+    <title>@yield('title')</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">  
     <!-- font awesome -->
@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
     <!-- css -->
     <link rel="stylesheet" href="{{asset('css/template.css')}}">
+    @yield('style')
 </head>
 
 <body>
@@ -55,8 +56,14 @@
                             Categories
                         </a>
                     </li>
+                    <li class="@yield('brand-active')">
+                        <a href="{{route('admin.brands.index')}}">
+                            <i class="fa-brands fa-accusoft"></i>
+                            Brands
+                        </a>
+                    </li>
                     <li class="@yield('product-active')">
-                        <a href="">
+                        <a href="{{route('admin.products.index')}}">
                            <i class="fa-solid fa-tag"></i>
                             Products
                         </a>
@@ -138,10 +145,12 @@
     {{-- sweet alert 2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- DataTables -->
-        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    {{-- ckeditor --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
     <!-- Bootstrap JavaScript -->
-        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- js -->
     <script src="{{asset('js/template.js')}}"></script>
     @yield('script')
@@ -181,6 +190,7 @@
             })
         @endif
         });
+
     </script>
 </body>
 

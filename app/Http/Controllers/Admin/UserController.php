@@ -102,7 +102,7 @@ class UserController extends Controller
     }
     public function ssd(Request $request)
     {
-        $role = $request->role;
+        $role = $request->role_id;
         $name = $request->name;
         $email = $request->email;
         $stauts = $request->status;
@@ -115,7 +115,9 @@ class UserController extends Controller
                 }
 
                 if ($role) {
-                    $query = $query->has('model_has_roles.role_id', $role);
+                    $query = $query->whereHas('roles', function ($q) use ($role) {
+                        $q->where('id', $role);
+                    });
                 }
 
                 if ($email) {

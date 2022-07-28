@@ -1,6 +1,6 @@
 @extends('master.master')
 @section('title')
-    Users
+    Create User
 @endsection
 @section('user-active')
     active

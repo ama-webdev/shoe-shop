@@ -9,11 +9,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $admin = Role::create(['name' => 'admin',]);
@@ -30,6 +25,10 @@ class RoleSeeder extends Seeder
             'edit-category',
             'update-category',
             'delete-category',
+            'create-brand',
+            'edit-brand',
+            'update-brand',
+            'delete-brand',
         ];
         $admin->givePermissionTo(Permission::all());
         $manager->givePermissionTo(Permission::all());
