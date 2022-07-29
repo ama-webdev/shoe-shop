@@ -29,20 +29,24 @@
             <div class="body">
                 <ul>
                     <li>
-                        <a href="">Home</a>
+                        <a href="{{route('user.home')}}">Home</a>
                     </li>
                     <li>
-                        <a href="">Shoes</a>
+                        <a href="{{route('user.shop')}}">Shoes</a>
                     </li>
+                    @guest
                     <li>
                         <a href="">Login</a>
                     </li>
                     <li>
                         <a href="">Register</a>
                     </li>
+                    @endguest
+                    @auth
                     <li>
                         <a href="">Logout</a>
                     </li>
+                    @endauth
                 </ul>
             </div>
         </div>
@@ -59,10 +63,12 @@
             </div>
             <div class="menu">
                 <ul>
-                    <li id="home"><a href="" class="@yield('home-active')">Home</a></li>
-                    <li id="shoes"><a href="" class="@yield('shoe-active')">Shoes</a></li>
+                    <li id="home"><a href="{{route('user.home')}}" class="@yield('home-active')">Home</a></li>
+                    <li id="shoes"><a href="{{route('user.shop')}}" class="@yield('shoe-active')">Shoes</a></li>
+                    @guest
                     <li id="shoes"><a href="" class="@yield('login-active')">Login</a></li>
                     <li id="shoes"><a href="" class="@yield('register-active')">Register</a></li>
+                    @endguest
                     <li id="shopping cart"><a href=""><i class="fas fa-shopping-cart"></i></a></li>
                     <li id="user"><a href=""><i class="fas fa-user"></i></a></li>
                 </ul>
