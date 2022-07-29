@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+:root{
+    --background-color:#f2f2f2;
+    --white:#fff;
+    --text-color:#333;
+    --text-mute:#555;
+    --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans';
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+img{
+    width: 100%;
+}
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.top-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:1rem 3rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, .3);
+    z-index: 997;
+}
+.top-nav-toggler{
+    display: none;  
+}
+.top-nav-toggler .bars{
+    cursor: pointer;
+}
+.top-nav-toggler .bars div{
+    width: 25px;
+    height: 4px;
+    background-color: var(--text-mute);
+    margin: .2rem;
+}
+.logo{
+    width: 150px;
+}
+.top-nav .menu ul{
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+}
+.top-nav .menu ul li a.active{
+    color: var(--text-color);
+}
+.top-nav .menu ul li a{
+    display: block;
+    width: 100%;
+    color: var(--text-mute);
+    font-weight: bold;
+    text-decoration: none;
+}
+.mobile-nav{
+    position: fixed;
+    z-index: 999;
+    height: 100vh;
+    background-color: var(--white);
+    width:270px;    
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, .3);
+    margin-left: -280px;
+    display: none;
+    transition: .3s ease all;
+}
+.mobile-nav.active{
+    margin-left: 0;
+}
+.wrapper.active{
+    overflow: hidden;
+}
+.mobile-nav img{
+    width: 100%;
+}
+.mobile-nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.mobile-nav ul li{
+    height: 40px;
+    line-height: 40px;
+    margin: 1rem 0;
+}
+.mobile-nav ul li a{
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--text-mute);
+    display: block;
+    padding:0 0 0 2rem;
+}
+.overlay{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: #ddd;
+    opacity: .5;
+    z-index: 990;
+    display: none;
+}
+.overlay.active{
+    display: block;
+}
+header{
+    width: 100%;
+    height: 100vh;
+    background:url('/images/template/banner3.jpg');
+    /* background:url('../images/banner1.jpg'); */
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+header .title{
+    margin-top: 8rem;
+    font-size: 5rem;
+    text-transform: uppercase;
+    font-family: 'Anton';
+    letter-spacing: .5rem;
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, .3);
+    -webkit-text-fill-color: var(--text-color); 
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--white);
+}
+header h5{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    text-align: justify;
+    letter-spacing: .1rem;
+    /* text-shadow: 2px 4px 8px rgba(0, 0, 0, .3); */
+    font-family: 'Anton';
+    -webkit-text-fill-color: var(--text-color); 
+    -webkit-text-stroke-width: .1px;
+    -webkit-text-stroke-color: var(--white);
+}
+header h5 span{
+    position: relative;
+    padding: .5rem;
+}
+header h5 span::before{
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 3px solid;
+    border-color: var(--text-color);
+    
+    -webkit-transform:rotate(-5deg);
+    -moz-transform:rotate(-5deg);
+    -ms-transform:rotate(-5deg);
+    -o-transform:rotate(-5deg);
+    transform:rotate(-5deg);
+}
+header .shop-now{
+    padding: .75rem 2rem;
+    box-shadow: 2px 4px 8px rgba(0,0,0,.3);
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--white);
+    background-color: var(--text-color);
+    margin-top: 2.5rem;
+    display: inline-block;
+    transition: .3s;
+}
+header .shop-now:hover{
+    background-color: #000;
+}
+/* shop */
+.wrapper .content{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow-y: scroll;
+    padding-top: 7rem;
+}
+.wrapper .content::-webkit-scrollbar{
+    display: none;
+}
+.wrapper .content .menu{
+    width: 300px;
+    /* border-right: 1px solid var(--text-color); */
+    padding: 1rem 1rem 1rem 4rem;
+}
+.wrapper .content .menu h5{
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.menu-list .menu-list-item{
+    display: block;
+    text-decoration: none;
+    height: 40px;
+    line-height: 40px;
+    color: var(--text-color);
+    font-weight: bold;
+}
+.wrapper .content .main{
+    width: calc(100% - 350px);
+}
+
+.wrapper .content .main .main-nav{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: .75rem;
+    margin-bottom: 1rem;
+}
+.wrapper .content .main .main-content{
+    height: 70vh;
+    overflow-y: scroll;
+}
+.wrapper .content .main .main-content::-webkit-scrollbar{
+    display: none;
+}
+.wrapper .content .main .main-nav .filter{
+    display: none;
+}
+
+#brand{
+    max-width: 200px;
+}
+.shoe-card{
+    padding: 1rem;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: 5px; 
+}
+
+.shoe-card .body{
+    padding-top: 1rem;
+}
+.shoe-card .sizes{
+    display: flex;
+}
+.shoe-card .sizes.active{
+    display: flex;
+}
+.shoe-card p{
+    margin: 0;
+    padding: 0;
+}
+.shoe-card .shoe-name{
+    font-weight: bold;
+}
+.sizes,.colors{
+    display: flex;
+    flex-wrap: wrap ;
+    justify-content: start;
+    align-items: center;
+    /* max-width: 200px; */
+    margin-top: 1rem;
+}
+.sizes{
+    margin-top: .5rem;
+}
+.color{
+    border: 1px solid var(--text-color);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: .3rem;
+    margin-left: 0;
+    cursor: pointer;    
+}
+
+.sizes .size{
+    background: none;
+    outline: none;
+    border: 1px solid var(--text-color);
+    border-radius: 3px;
+    padding: .5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .3rem;
+    margin-left: 0;
+}
+.sizes .size:disabled{
+    border: 1px solid #ddd;
+
+}
+.sizes .size,.colors .color{
+    cursor: pointer;
+}
+.sizes .size.active{
+    background: var(--text-color);
+    color: var(--white)
+}
+.size:hover{
+    background: var(--text-color);
+    color: var(--white)
+}
+.colors .color.active{
+    border: 1px solid white;
+    outline: 2px solid #198754;
+    transform: scale(1.1);
+}
+.color:hover{
+    border: 1px solid white;
+    outline: 2px solid #198754;
+    transform: scale(1.1);
+}
+.quick-add {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+.quick-add h5{
+    font-size: .8rem;
+    font-weight: bold;
+}
+.quick-add i{
+    font-size: 1.3rem;
+    font-weight: bold;
+    display: none;
+}
+footer{
+    height: 80vh;
+    width: 100%;
+    background-color: #212a2f;
+}
+
+@media(max-width:768px){
+    .top-nav{
+        padding: 1rem;
+    }
+    .mobile-nav{
+        display: block;
+    }
+    #home,#shoes,.logo{
+        display: none;
+    }
+    .top-nav-toggler{
+        display: block;
+    }
+    header{
+        padding-left:1rem;
+    }
+    header .title{
+        font-size: 3rem;
+    }
+    header .h5{
+        font-size: 1rem;
+    }
+    header p{
+        text-align: left;
+    }
+    .wrapper .content .menu{
+        width: 270px;
+        height: 100vh;
+        border:none;
+        position: fixed;
+        right: 0;
+        top: 0;
+        background-color: var(--white);
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, .3);
+        z-index: 996;
+        transition: .3s;
+        margin-right: -270px;
+        padding: 5rem 1rem 1rem 2rem;
+    }
+    .wrapper .content .main .main-content{
+        height: calc(100vh - 10rem);
+        overflow-y: scroll;
+    }
+    .wrapper .content .menu.active{
+        margin-right: 0;
+     }
+    .wrapper .content{
+        padding-top: 4rem;
+    }
+    .wrapper .content .main{
+        width: 100%;
+    }
+    .wrapper .content .main .main-nav{
+        padding: 1rem;
+        margin:0;
+        padding: 0 .75rem .75rem .75rem;
+    }
+    .wrapper .content .main .main-nav .filter{
+        display: block;
+    }
+    .shoe-card .sizes{
+        display: none;
+    }
+    .sizes.active{
+        display: flex;
+    }
+    .quick-add i{
+        display: block;
+    }
+}
