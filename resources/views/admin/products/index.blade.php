@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('admin.master.master')
 @section('title')
     Products
 @endsection

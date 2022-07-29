@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -36,5 +37,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        $roles = $user->getRoleNames()->toArray();
+        if (in_array('admin', $roles)) {
+            return redirect()->route('admin.dashboard');
+        } elseif (in_array('manager', $roles)) {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->route('user.home');
+        }
     }
 }
