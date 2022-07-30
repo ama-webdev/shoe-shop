@@ -38,4 +38,5 @@ Route::prefix('admin')->middleware(['auth', 'role:admin|manager'])->name('admin.
 Route::middleware(['auth', 'role:customer'])->name('user.')->group(function () {
     Route::get('/', [UserPageController::class, 'home'])->name('home');
     Route::get('/shoes', [UserPageController::class, 'shop'])->name('shop');
+    Route::get('/cart', [UserPageController::class, 'cart'])->name('cart');
 });

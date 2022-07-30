@@ -46,8 +46,13 @@ class UserPageController extends Controller
                     $gender_id = 0;
                 }
                 $query->where('gender_id', $gender_id);
-            })->paginate(10)
+            })->paginate(12)
             ->appends(request()->query());
         return view('user.shop', compact('products'));
+    }
+
+    public function cart()
+    {
+        return view('user.cart');
     }
 }

@@ -44,7 +44,8 @@
                     @endguest
                     @auth
                     <li>
-                        <a href="">Logout</a>
+                        <a href="" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">Logout</a>
                     </li>
                     @endauth
                 </ul>
@@ -69,8 +70,24 @@
                     <li id="shoes"><a href="" class="@yield('login-active')">Login</a></li>
                     <li id="shoes"><a href="" class="@yield('register-active')">Register</a></li>
                     @endguest
-                    <li id="shopping cart"><a href=""><i class="fas fa-shopping-cart"></i></a></li>
-                    <li id="user"><a href=""><i class="fas fa-user"></i></a></li>
+                    <li id="shopping-cart"><a href="{{route('user.cart')}}" class="@yield('cart-active')"><i class="fas fa-shopping-cart"></i><span class="item-count">0</span></a></li>
+                    <li class="nav-item dropdown" id="user">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <span>{{ Auth::user()->name }}</span> <i class="fas fa-user ms-2"></i>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -79,8 +96,8 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    {{-- infinite scroll --}}
-    <script src="{{asset('js/infinite.js')}}"></script>
+    {{-- sweet alert 2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- js -->

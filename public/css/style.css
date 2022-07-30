@@ -211,8 +211,12 @@ header .shop-now:hover{
     text-decoration: none;
     height: 40px;
     line-height: 40px;
-    color: var(--text-color);
+    color: var(--text-mute);
     font-weight: bold;
+}
+.menu-list .menu-list-item.active{
+    color: var(--text-color);
+    transform: scale(1.05);
 }
 .wrapper .content .main{
     width: calc(100% - 350px);
@@ -342,7 +346,22 @@ footer{
     width: 100%;
     background-color: #212a2f;
 }
-
+#shopping-cart{
+    position: relative;
+}
+#shopping-cart .item-count{
+    position: absolute;
+    top: -8px;
+    left:12px;
+    background-color:crimson;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    color: var(--white);
+    border-radius: 50%;
+    text-align: center;
+    font-size: .7rem;
+}
 @media(max-width:768px){
     .top-nav{
         padding: 1rem;
