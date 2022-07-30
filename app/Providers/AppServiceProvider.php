@@ -28,11 +28,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrapFive();
-        $categories = Category::all();
-        $brands = Brand::all();
-        View::share([
-            'categories' => $categories,
-            'brands' => $brands
-        ]);
+        // $categories = Category::all();
+        // $brands = Brand::all();
+        // View::share([
+        //     'categories' => $categories,
+        //     'brands' => $brands
+        // ]);
     }
 }

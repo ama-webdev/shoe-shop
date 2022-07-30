@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -33,6 +34,9 @@
                     </li>
                     <li>
                         <a href="{{route('user.shop')}}">Shoes</a>
+                    </li>
+                    <li>
+                        <a href="{{route('user.orders')}}">Orders</a>
                     </li>
                     @guest
                     <li>
@@ -73,10 +77,13 @@
                     <li id="shopping-cart"><a href="{{route('user.cart')}}" class="@yield('cart-active')"><i class="fas fa-shopping-cart"></i><span class="item-count">0</span></a></li>
                     <li class="nav-item dropdown" id="user">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <span>{{ Auth::user()->name }}</span> <i class="fas fa-user ms-2"></i>
+                            <span class="logout-user-btn">{{ Auth::user()->name }}</span> <i class="fas fa-user ms-2"></i>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('user.orders') }}">
+                                Orders
+                            </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">

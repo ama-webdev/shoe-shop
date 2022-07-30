@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\User\UserPageController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\User\UserOrderController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\PermissionController;
 
@@ -35,8 +37,10 @@ Route::prefix('admin')->middleware(['auth', 'role:admin|manager'])->name('admin.
     Route::resource('/products', ProductController::class);
     Route::get('/products/datatable/ssd', [ProductController::class, 'ssd'])->name('product-ssd');
 });
-Route::middleware(['auth', 'role:customer'])->name('user.')->group(function () {
+Route::middleware(['auth', 'role:customer|admin|manager'])->name('user.')->group(function () {
     Route::get('/', [UserPageController::class, 'home'])->name('home');
     Route::get('/shoes', [UserPageController::class, 'shop'])->name('shop');
     Route::get('/cart', [UserPageController::class, 'cart'])->name('cart');
+    Route::get('/orders', [UserOrderController::class, 'index'])->name('orders');
+    Route::post('/orders', [UserOrderController::class, 'store'])->name('orders');
 });

@@ -73,23 +73,23 @@ class UUID
         }
         return $result;
     }
-    // static function OrderCode()
-    // {
-    //     $prefix = 'D';
-    //     $flag = true;
-    //     $start = 'D000001';
-    //     $result = '';
-    //     while ($flag) {
-    //         $exist_code = Order::where('order_code', $start)->first();
-    //         if (!$exist_code) {
-    //             $result = $start;
-    //             $flag = false;
-    //         }
-    //         $code_without_prefix = substr($start, 1);
-    //         $code_without_zero = ltrim($code_without_prefix, "0");
-    //         $code_increase_one = str_pad($code_without_zero + 1, 6, "0", STR_PAD_LEFT);
-    //         $start = $prefix . $code_increase_one;
-    //     }
-    //     return $result;
-    // }
+    static function OrderCode()
+    {
+        $prefix = 'D';
+        $flag = true;
+        $start = 'D000001';
+        $result = '';
+        while ($flag) {
+            $exist_code = Order::where('order_code', $start)->first();
+            if (!$exist_code) {
+                $result = $start;
+                $flag = false;
+            }
+            $code_without_prefix = substr($start, 1);
+            $code_without_zero = ltrim($code_without_prefix, "0");
+            $code_increase_one = str_pad($code_without_zero + 1, 6, "0", STR_PAD_LEFT);
+            $start = $prefix . $code_increase_one;
+        }
+        return $result;
+    }
 }

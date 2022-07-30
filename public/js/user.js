@@ -1,8 +1,17 @@
 $(document).ready(function () {
+    let token = document.head.querySelector('meta[name="csrf-token"]')
+    if (token) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF_TOKEN': token.content
+            }
+        })
+    }
     showCartCount();
     $('.back-btn').click(function (e) {
         e.preventDefault();
         window.history.go(-1);
+        showCartCount();
     })
     $(".top-nav-toggler").click(function () {
         $('.mobile-nav,.overlay,.wrapper').addClass('active');

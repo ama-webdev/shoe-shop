@@ -56,7 +56,7 @@
             padding: 1rem;
         }
         table tbody tr:last-child{
-            border-top: 1px solid #ddd;
+            /* border-top: 1px solid #ddd; */
         }
         table thead{
             border-bottom: 1px solid #ddd;
@@ -150,11 +150,14 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn text-primary back-btn">
+                        <a href="{{route('user.shop')}}" class="btn text-primary">
                             <i class="fa-solid fa-left-long"></i>
-                            Continue Shopping
+                            Back To Shop
                         </a>
-                         <a href="" class="btn btn-danger">Order Now</a>
+                         <div class="btn-grup">
+                            <a href="#" class="clear_cart btn btn-danger"><i class="fas fa-times"></i></a>
+                            <a href="#" class="btn btn-success order-now">Order Now</a>
+                         </div>
                     </div>
                 </div>
             </div>
@@ -169,6 +172,7 @@
     <script>
         $(document).ready(function () {
             showCart()
+
             // plus item
             $(".cart-table-body").on('click','.plus', function () {
                 var parent=$(this).parent();
@@ -180,6 +184,7 @@
                 showCart();
                 showCartCount()
             });
+
             // minus item
             $(".cart-table-body").on('click','.minus', function () {
                 var parent=$(this).parent();
@@ -279,6 +284,9 @@
                             </td>
                         </tr>
                         `;
+                        $(".card-footer").addClass('d-none');
+                        $("thead").addClass('d-none')
+
                     }
                 }else{
                        html+=`
@@ -288,13 +296,16 @@
                             </td>
                         </tr>
                         `;
+                    $(".card-footer").addClass('d-none');
+                    $("thead").addClass('d-none')
+
                 }
                 $("table tbody").html(html);
+
             }
 
             // remove item
             $(".cart-table-body").on('click','.remove-item', function () {
-                
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -315,6 +326,74 @@
                     }
                 })
             });
+
+            // order now
+            $(".order-now").click(function(e){
+                e.preventDefault();
+                var cart = JSON.parse(localStorage.getItem('cart'));
+                if(cart){
+                    if(cart.length>0){
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Confirm'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/orders",
+                                    data: {data:JSON.stringify(cart)},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        clearCart();
+                                        Swal.fire({
+                                            // position: 'top-end',
+                                            icon: 'success',
+                                            title: data.data,
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                    },
+                                    error:function(data){
+                                        console.log(data.error)
+                                    }
+                                });
+                            }
+                        })
+                    }
+                }
+            })
+
+            // clear cart btn
+            $(".clear_cart").click(function(e){
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Your cart will be clear.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirm'
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        e.preventDefault();
+                        clearCart();
+                    }
+                })
+                
+            })
+
+            // clear cart
+            function clearCart()
+            {
+                localStorage.removeItem('cart');
+                showCart();
+                showCartCount();
+            }
         });
     </script>
 @endsection

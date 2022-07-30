@@ -20,6 +20,8 @@ class UserPageController extends Controller
         $category = $request->category;
         $brand = $request->brand;
         $gender = $request->gender;
+        $categories = Category::all();
+        $brands = Brand::all();
         $products = Product::with('sizes', 'colors')
             ->when($category, function ($query, $category) {
                 $category_record = Category::where('name', $category)->first();
@@ -48,7 +50,7 @@ class UserPageController extends Controller
                 $query->where('gender_id', $gender_id);
             })->paginate(12)
             ->appends(request()->query());
-        return view('user.shop', compact('products'));
+        return view('user.shop', compact('products', 'categories', 'brands'));
     }
 
     public function cart()

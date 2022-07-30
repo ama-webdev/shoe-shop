@@ -28,8 +28,8 @@ active
         display: none;
         }
     @media(max-width:600px){
-            .remove - filter span{
-        display: none
+            .remove-filter span{
+                display: none
             }
     .remove-filter i{
         margin: 0 !important;
