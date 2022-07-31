@@ -69,7 +69,7 @@
             <div class="menu">
                 <ul>
                     <li id="home"><a href="{{route('user.home')}}" class="@yield('home-active')">Home</a></li>
-                    <li id="shoes"><a href="{{route('user.shop')}}" class="@yield('shoe-active')">Shoes</a></li>
+                    <li id="shoes"><a href="{{route('user.shop')}}" class="@yield('shoe-active')">Shop</a></li>
                     @guest
                     <li id="shoes"><a href="" class="@yield('login-active')">Login</a></li>
                     <li id="shoes"><a href="" class="@yield('register-active')">Register</a></li>
