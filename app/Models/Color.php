@@ -12,4 +12,8 @@ class Color extends Model
     {
         return $this->belongsToMany(Product::class);
     }
+    public function order_detail()
+    {
+        return $this->hasOne(OrderDetail::class);
+    }
 }

@@ -36,6 +36,9 @@ Route::prefix('admin')->middleware(['auth', 'role:admin|manager'])->name('admin.
     // products
     Route::resource('/products', ProductController::class);
     Route::get('/products/datatable/ssd', [ProductController::class, 'ssd'])->name('product-ssd');
+    // orders
+    Route::resource('/orders', OrderController::class);
+    Route::get('/orders/datatable/ssd', [OrderController::class, 'ssd'])->name('order-ssd');
 });
 Route::middleware(['auth', 'role:customer|admin|manager'])->name('user.')->group(function () {
     Route::get('/', [UserPageController::class, 'home'])->name('home');
@@ -43,4 +46,5 @@ Route::middleware(['auth', 'role:customer|admin|manager'])->name('user.')->group
     Route::get('/cart', [UserPageController::class, 'cart'])->name('cart');
     Route::get('/orders', [UserOrderController::class, 'index'])->name('orders');
     Route::post('/orders', [UserOrderController::class, 'store'])->name('orders');
+    Route::get('/orders/{id}', [UserOrderController::class, 'show'])->name('order_details');
 });

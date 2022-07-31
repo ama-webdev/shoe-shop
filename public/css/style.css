@@ -23,6 +23,15 @@
 .swal2-popup{
     width: 22em !important;
 }
+.table {
+  /* max-width: 600px; */
+  margin: 0 auto;
+}
+.table th, td {
+    white-space: nowrap;
+    text-align: center !important; 
+    vertical-align: middle;
+}
 body{
     padding: 0;
     margin: 0;

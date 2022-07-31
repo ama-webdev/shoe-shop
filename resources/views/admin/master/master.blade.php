@@ -68,16 +68,16 @@
                             Products
                         </a>
                     </li>
+                    <li class="@yield('order-active')">
+                        <a href="{{route('admin.orders.index')}}">
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                            Orders
+                        </a>
+                    </li>
                     <li class="@yield('sale-active')">
                         <a href="">
                             <i class="fa-solid fa-scale-balanced"></i>
                             Sale
-                        </a>
-                    </li>
-                     <li class="@yield('order-active')">
-                        <a href="">
-                            <i class="fa-solid fa-cart-arrow-down"></i>
-                            Orders
                         </a>
                     </li>
                     <li class="@yield('inbox-active')">
