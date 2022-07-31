@@ -47,4 +47,5 @@ Route::middleware(['auth', 'role:customer|admin|manager'])->name('user.')->group
     Route::get('/orders', [UserOrderController::class, 'index'])->name('orders');
     Route::post('/orders', [UserOrderController::class, 'store'])->name('orders');
     Route::get('/orders/{id}', [UserOrderController::class, 'show'])->name('order_details');
+    Route::post('/orders/ssd/summary', [AdminPageController::class, 'orderSummary'])->name('order-summary');
 });

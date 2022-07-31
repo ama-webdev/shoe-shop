@@ -32,7 +32,7 @@
             </div>
             <div class="body">
                 <ul>
-                    <li class="dashboard-active">
+                    <li class="@yield('dashboard-active')">
                         <a href="{{route('admin.dashboard')}}">
                             <i class="fa-solid fa-chart-line"></i>
                             Dashboard
@@ -147,6 +147,8 @@
     <!-- DataTables -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    {{-- chart --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     {{-- ckeditor --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
     <!-- Bootstrap JavaScript -->
