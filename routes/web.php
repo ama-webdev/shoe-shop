@@ -14,6 +14,9 @@ use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\PermissionController;
 
 Auth::routes();
+Route::get('auth/google', [UserPageController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [UserPageController::class, 'handleGoogleCallback']);
+
 Route::prefix('admin')->middleware(['auth', 'role:admin|manager'])->name('admin.')->group(function () {
     Route::get('/', [AdminPageController::class, 'dashboard'])->name('dashboard');
     // users
